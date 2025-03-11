@@ -593,6 +593,18 @@ $CFG->behat_profiles = [
 
 See [alternative browsers](./browsers/index.md) for more details.
 
+#### Running CLI tools on your Behat instance
+
+Sometimes it can be useful to run CLI tools on Behat instances. For example, imagine you have a Behat test which fails due to incorrect CSS styling, and you have set the test to pause on fail. While it is paused you might wish to edit the CSS, purge caches, and reload the browser to see if the problem has been fixed.
+
+If you simply run the `purge_caches.php` CLI script, this will purge caches on your 'real' Moodle instance, not the separate instance used for Behat testing. Instead, when running the command in your terminal you can set the `BEHAT_CLI` environment variable, as follows:
+
+```
+BEHAT_CLI=1 php admin/cli/purge_caches.php --theme
+```
+
+This environment variable should work for all Moodle CLI scripts.
+
 ## Troubleshooting
 
 ### Increasing timeouts
